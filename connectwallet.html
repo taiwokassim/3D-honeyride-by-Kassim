@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body style="background-color: rgb(13, 13, 14);">
+
+    <button id="connectBtn" style="padding:10px 20px;background:#7209b7;color:white;border:none;border-radius:5px;font-size:16px;width: 50%; height: 100%;"><i>
+      🚀 Connect your Backpack Wallet to Start 3D honeyRide By Kassim</i>
+    </button>
+    <br><br><br>
+
+    <div style="max-width:500px;margin:20px auto;color:#ccc;font-size:16px;line-height:1.6;">
+      <b><strong style="color:#facc15;">*Mission Objective:*</strong></b><br><br>
+      Connect your Backback wallet first to begin. You’ll be taken to the next page that shows your controls and a set of instructions.<br><br>
+      Drive through the 3D world and collect Honeycomb Testnet Tokens as you play These tokens an be claimed on mainnet once rewards are enabled.<br><br>
+      How it workes:.<br><br>
+
+      1. connect your testnet wallet<br>
+      2. Start the game and drive to earn<br>
+      3. Tokens collected in game will be linked to your wallet<br>
+      4. when mainnet launches, claim your rewards.<br><br>
+      Drive to earn Honeycomb test tokens and evolve your driving skills — all progress recorded on-chain with 
+      <span style="color:#9d4edd;">Honeycomb Protocol</span>.
+    </div>
+
+    <script>
+      let walletAddress = null;
+
+      const connectBtn = document.getElementById('connectBtn');
+
+      connectBtn.onclick = async () => {
+        if (window.backpack) {
+          try {
+            const account = await window.backpack.connect();
+            walletAddress = account.publicKey.toString();
+
+            // Save to localStorage
+            localStorage.setItem("walletAddress", walletAddress);
+
+            // Redirect after successful connection
+            window.location.href = "https://kassim3dhoneyride.22web.org";
+          } catch (err) {
+            alert('Wallet connection failed.');
+          }
+        } else {
+          alert('Backpack Wallet not detected.');
+        }
+      };
+    </script>
+
+  </body>
+</html>
